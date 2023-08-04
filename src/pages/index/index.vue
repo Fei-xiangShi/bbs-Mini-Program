@@ -6,7 +6,7 @@
     </view>
 
     <view class="head-pic">
-      <image mode="aspectFill" src="../../static/images/headpic.jpg"></image>
+      <image mode="aspectFill" src="@/static/images/headpic.jpg"></image>
     </view>
     <view style="height: 999px"></view>
   </view>
