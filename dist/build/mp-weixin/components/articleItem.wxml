@@ -1,0 +1,1 @@
+<view class="art-item"><view class="thumbnail"><image src="{{a}}" class="img" alt=""/></view><view class="title">{{b}}</view><view class="author">{{c}}</view></view>

@@ -1,0 +1,1 @@
+<view class="article-box data-v-c85d376e"><article-item wx:for="{{a}}" wx:for-item="item" wx:key="a" class="data-v-c85d376e" u-i="{{item.b}}" bind:__l="__l" u-p="{{item.c}}"></article-item></view>

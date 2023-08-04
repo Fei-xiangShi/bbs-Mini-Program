@@ -1,0 +1,1 @@
+<view class="content"><image class="logo" src="/static/logo.png"/><view class="text-area"><text class="title">{{a}}</text></view><u-view-button wx:if="{{b}}" u-s="{{['d']}}" u-i="36870219-0" bind:__l="__l" u-p="{{b}}">登录</u-view-button></view>

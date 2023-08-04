@@ -1,0 +1,1 @@
+"use strict";var e=Object.defineProperty,t=(t,r,s)=>(((t,r,s)=>{r in t?e(t,r,{enumerable:!0,configurable:!0,writable:!0,value:s}):t[r]=s})(t,"symbol"!=typeof r?r+"":r,s),s);exports.ArticleList=class{constructor(){t(this,"page",1),t(this,"list",[])}};

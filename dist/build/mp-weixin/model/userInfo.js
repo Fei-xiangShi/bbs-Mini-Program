@@ -1,0 +1,1 @@
+"use strict";var e=Object.defineProperty,t=(t,r,a)=>(((t,r,a)=>{r in t?e(t,r,{enumerable:!0,configurable:!0,writable:!0,value:a}):t[r]=a})(t,"symbol"!=typeof r?r+"":r,a),a);exports.User=class{constructor(){t(this,"userInfo",{id:0,name:"",accountId:"",studentId:"",gmtCreate:0,gmtModified:0,siteAdmin:!1,avatarUrl:"",bio:"",email:""})}};

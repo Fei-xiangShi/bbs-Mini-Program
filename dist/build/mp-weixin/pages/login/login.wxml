@@ -1,0 +1,1 @@
+<view class="login-container"><view>登录页面</view><form bindsubmit="{{f}}"><input type="text" placeholder="用户名" value="{{a}}" bindinput="{{b}}"/><input type="password" placeholder="密码" value="{{c}}" bindinput="{{d}}"/><button type="submit" bindtap="{{e}}">登录</button></form></view>

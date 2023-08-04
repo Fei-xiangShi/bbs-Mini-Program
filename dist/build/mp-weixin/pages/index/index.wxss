@@ -1,0 +1,1 @@
+.navigation{position:fixed;top:0;left:0;right:0;z-index:99}.nav-top{height:var(--dcde25ee)}.nav-height{height:var(--c9b14e1a);line-height:var(--c9b14e1a);padding-left:20rpx;font-size:36rpx;color:#fff;font-weight:700}.head-pic image{width:100%;height:400rpx}

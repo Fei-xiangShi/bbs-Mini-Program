@@ -1,0 +1,1 @@
+"use strict";const e=require("../../common/vendor.js");if(!Array){e.resolveComponent("uView-Button")()}const t=e.defineComponent({__name:"classTable",setup(t){const n=e.ref("class");return(t,r)=>({a:e.t(n.value),b:e.p({type:"primary"})})}});wx.createPage(t);

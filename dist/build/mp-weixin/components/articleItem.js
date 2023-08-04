@@ -1,0 +1,1 @@
+"use strict";const e=require("../common/vendor.js");require("../app.js");const t=e.defineComponent({__name:"articleItem",props:{article:{type:Object,required:!0}},setup:t=>(r,c)=>({a:t.article.thumbnailUrl,b:e.t(t.article.title),c:e.t(t.article.author)})});wx.createComponent(t);
