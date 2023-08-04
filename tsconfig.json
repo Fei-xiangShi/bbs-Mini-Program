@@ -8,7 +8,9 @@
     },
     "lib": ["esnext", "dom"],
     "types": [
-      "@dcloudio/types"
+      "@dcloudio/types",
+      "@ttou/uview-typings/v3",
+      "@ttou/uview-typings/refs"
     ]
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]

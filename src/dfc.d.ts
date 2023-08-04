@@ -1,1 +1,1 @@
-declare module "uview-ui";
+declare module "uview-plus";

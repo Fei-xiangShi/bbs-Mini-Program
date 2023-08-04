@@ -1,6 +1,6 @@
 {
-  "name": "uni-preset-vue",
-  "version": "0.0.0",
+  "name": "swucamphorforest",
+  "version": "0.0.1",
   "scripts": {
     "dev:app": "uni -p app",
     "dev:app-android": "uni -p app-android",
@@ -52,6 +52,8 @@
     "@dcloudio/uni-mp-toutiao": "3.0.0-3080720230703001",
     "@dcloudio/uni-mp-weixin": "3.0.0-3080720230703001",
     "@dcloudio/uni-quickapp-webview": "3.0.0-3080720230703001",
+    "@ttou/uview-typings": "^2.0.5",
+    "uview-plus": "^3.1.35",
     "uview-ui": "^2.0.36",
     "vue": "3.2.47",
     "vue-i18n": "9.2.2"

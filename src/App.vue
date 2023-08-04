@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { onLaunch, onShow, onHide } from "@dcloudio/uni-app";
-import ArticleItem from "./components/articleItem.vue";
+
 onLaunch(() => {
   let res = uni.getStorageSync("menuButtonBoundingClientRect");
-  if(!res) {
+  if (!res) {
     res = uni.getMenuButtonBoundingClientRect();
     uni.setStorageSync("menuButtonBoundingClientRect", res);
   }
@@ -15,6 +15,8 @@ onShow(() => {
 onHide(() => {
   console.log("App Hide");
 });
-
 </script>
-<style></style>
+
+<style lang="scss">
+@import "../node_modules/uview-plus/index.scss";
+</style>
