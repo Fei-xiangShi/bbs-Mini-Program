@@ -41,11 +41,11 @@ const ArticleApi = {
   getArticleById: (id: string) => get(passageUrl + id, {}),
   getArticleList: (page: number) => get(passageUrl + "/articleList", {page: page.toString()}),
   getArticleListByCategory: (category: string, page: number) => post(passageUrl + "/articleList/" + category, page.toString()),
+  searchArticle: (method: number, condition: string) => post(passageUrl + '/search', {method: method, condition: condition}),
 }
 
 const LoginApi = {
   swuLogin: (accountPack: object) => post("/swuLogin", accountPack),
-  
 }
 
 const UserApi = {

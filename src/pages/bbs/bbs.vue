@@ -49,7 +49,7 @@ onPullDownRefresh(() => {
 
 <style lang="scss" scoped>
 .article-box {
-  width: 690upx; 
+  width: 690upx;
   padding: 10upx 30upx;
   background-color: #f7f7f7;
   display: flex;

@@ -26,7 +26,12 @@ const credentials = ref({
 const login = async () => {
   const response: any = await LoginApi.swuLogin(credentials.value);
   if (response.header["1235d6"] === "true") {
-    uni.setStorageSync("jwt", response.header["Set-Cookie"].split(";").find((row: string) => row.startsWith('doorKey=')));
+    uni.setStorageSync(
+      "jwt",
+      response.header["Set-Cookie"]
+        .split(";")
+        .find((row: string) => row.startsWith("doorKey="))
+    );
     uni.switchTab({
       url: "/pages/index/index",
     });
