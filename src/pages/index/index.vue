@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { RequestApi } from "@/public/request";
+import Api from "@/config/apiConfig";
 import { ref, onMounted } from "vue";
 
 let menu_top = ref<string>("");
@@ -28,7 +28,7 @@ onMounted(() => {
 });
 
 async function pageData() {
-  const res: any = await RequestApi.frontPage();
+  const res: any = await Api.frontPage();
   console.log(res);
 }
 </script>

@@ -1,9 +1,9 @@
 {
-  "easycom":{
-    "custom":{
+  "easycom": {
+    "custom": {
       "^u-(.*)": "uview-plus/components/u-$1/u-$1.vue",
       "^up-(.*)": "uview-plus/components/u-$1/u-$1.vue",
-	    "^u-([^-].*)": "uview-plus/components/u-$1/u-$1.vue"
+      "^u-([^-].*)": "uview-plus/components/u-$1/u-$1.vue"
     }
   },
   "pages": [
@@ -26,16 +26,26 @@
     {
       "path": "pages/bbs/bbs",
       "style": {
-        "enablePullDownRefresh": true
+        "enablePullDownRefresh": true,
+        "navigationStyle": "custom"
       }
     },
     {
       "path": "pages/classTable/classTable"
+    },
+    {
+      "path": "pages/bbs/articlePublish",
+      "style": {
+        "navigationBarTitleText": "发帖"
+      }
+    },
+    {
+      "path": "pages/bbs/articleDetail"
     }
   ],
   "globalStyle": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "uni-app",
+    "navigationBarTitleText": "forest",
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8"
   },

@@ -1,4 +1,16 @@
 <template>
+  <view>123</view>
+  <view class="navToAriticlePublishPage" @tap="navToArticlePublishPage"
+    ><u-text>+</u-text></view
+  >
+  <view>
+    <searchBar
+      placeholder="请输入关键字"
+      class="header-search-bar"
+      @search="searchPassage"
+    />
+    <navbar />
+  </view>
   <view class="article-box">
     <articleItem
       v-for="item in artList.list"
@@ -10,15 +22,59 @@
 
 <script setup lang="ts">
 import articleItem from "@/components/articleItem.vue";
-import { ArticleApi } from "@/public/request";
+import Api from "@/config/apiConfig";
 import { onLoad, onReachBottom, onPullDownRefresh } from "@dcloudio/uni-app";
-import { reactive } from "vue";
+import { reactive, onMounted } from "vue";
 import { ArticleList } from "@/model/articleList";
+import navbar from "@/components/navbar.vue";
+import searchBar from "@/components/searchBar.vue";
+import routes from "@/config/routes";
+import ResponseCheck from "@/utils/responseCheck";
+
+let isSearching = false;
+
+const navToArticlePublishPage = () => {
+  uni.navigateTo({
+    url: routes.articlePublish.path,
+  });
+};
 
 const artList = reactive(new ArticleList());
-const getlist = () => {
-  ArticleApi.getArticleList(artList.page).then((res: any) => {
+
+const searchPassage = (e: string | number) => {
+  isSearching = true;
+  if (!e) {
+    uni.showToast({
+      title: "请输入关键字",
+      icon: "none",
+    });
+    return;
+  }
+  let res = null;
+  if (!isNaN(Number(e))) {
+    res = Api.searchArticle(1, e);
+  } else {
+    res = Api.searchArticle(2, e);
+  }
+  ResponseCheck.resIsSuccess(res);
+  res.then((res: any) => {
+    console.log(res);
+    if (res.data && res.data.length > 0) {
+      artList.list = res.data;
+      return;
+    }
+    uni.showToast({
+      title: "没有更多了",
+      icon: "none",
+    });
+  });
+};
+
+const getCategoryArticle = (category: number) => {
+  Api.getArticleListByCategory(category, artList.page).then((res: any) => {
     uni.stopPullDownRefresh();
+    console.log(res);
+    ResponseCheck.resIsSuccess(res);
     if (res.data && res.data.length > 0) {
       //每次请求页数加一
       artList.page++;
@@ -32,28 +88,82 @@ const getlist = () => {
     });
   });
 };
+
+const getlist = (getWhat: number | string) => {
+  if (isSearching) {
+    searchPassage(getWhat);
+  } else if (typeof getWhat === "number") {
+    getCategoryArticle(getWhat);
+  } else {
+    uni.showToast({
+      title: "请求错误",
+      icon: "none",
+    });
+  }
+};
 onLoad(() => {
-  getlist();
+  isSearching = false;
+  let category = uni.getStorageSync("category");
+  artList.list = [];
+  artList.page = 1;
+  getlist(category);
 });
 
 onReachBottom(() => {
-  getlist();
+  let category = uni.getStorageSync("category");
+  getlist(category);
 });
 
 onPullDownRefresh(() => {
+  let category = uni.getStorageSync("category");
   artList.list = [];
   artList.page = 1;
-  getlist();
+  getlist(category);
+});
+
+onMounted(() => {
+  isSearching = false;
 });
 </script>
 
 <style lang="scss" scoped>
 .article-box {
-  width: 690upx;
-  padding: 10upx 30upx;
-  background-color: #f7f7f7;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  width: 95%;
+  margin: 0 auto;
+  padding: 10upx;
+}
+.navToAriticlePublishPage {
+  background: linear-gradient(
+    to bottom right,
+    rgba(#b39cd0, 0.5),
+    rgba(#00c9a7, 0.3),
+    rgba(#c4fcef, 0.5)
+  );
+  position: fixed;
+  bottom: 5%;
+  right: 10%;
+  font-size: 50px;
+  vertical-align: middle;
+  width: 50px;
+  height: 50px;
+  border: 2px solid;
+  border-radius: 60px;
+  ::before,
+  ::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
+  ::before {
+    width: 20px;
+    border-top: 4px solid;
+    margin: -2px 0 0 -10px;
+  }
+  ::after {
+    height: 20px;
+    border-left: 4px solid;
+    margin: -10px 0 0 -2px;
+  }
 }
 </style>

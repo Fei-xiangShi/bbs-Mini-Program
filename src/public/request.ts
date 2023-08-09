@@ -1,5 +1,4 @@
-const baseUrl = "http://localhost:8080";
-const passageUrl = "/passage";
+import SiteConfig from "@/config/requestUrl";
 
 const request = (
   url: string,
@@ -8,7 +7,7 @@ const request = (
 ) => {
   return new Promise((resolve, reject) => {
     uni.request({
-      url: baseUrl + url,
+      url: SiteConfig.baseUrl + url,
       method,
       data,
       header: {
@@ -32,24 +31,8 @@ const post = (url: string, data: string | object | ArrayBuffer) => {
   return request(url, "POST", data);
 };
 
-const RequestApi = {
-  // 获取首页数据
-  frontPage: () => get("/frontPage", {}),
+const http = {
+  get, post
 }
 
-const ArticleApi = {
-  getArticleById: (id: string) => get(passageUrl + id, {}),
-  getArticleList: (page: number) => get(passageUrl + "/articleList", {page: page.toString()}),
-  getArticleListByCategory: (category: string, page: number) => post(passageUrl + "/articleList/" + category, page.toString()),
-  searchArticle: (method: number, condition: string) => post(passageUrl + '/search', {method: method, condition: condition}),
-}
-
-const LoginApi = {
-  swuLogin: (accountPack: object) => post("/swuLogin", accountPack),
-}
-
-const UserApi = {
-  home: () => get("/home", {}),
-}
-
-export { RequestApi, ArticleApi, LoginApi, UserApi };
+export { http };
