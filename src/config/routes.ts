@@ -17,9 +17,14 @@ const RouteConfig = {
     name: "课程表",
     path: "/pages/classTable/classTable",
   },
+  // home
   home: {
     name: "个人中心",
     path: "/pages/home/home",
+  },
+  modifyPersonalInfo: {
+    name: "修改个人信息",
+    path: "/pages/home/modifyPersonalInfo"
   },
   // index
   catCafe: {

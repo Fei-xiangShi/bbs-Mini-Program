@@ -38,6 +38,7 @@ const Api = {
   swuLogin: (accountPack: object) => http.post(Url.swuLogin, accountPack),
   // 获取用户信息
   home: () => http.get(Url.home, {}),
+  modifyPersonalInfo: (user: object) => http.post(Url.home, user),
   // 获取菜单
   getMenu: () => http.get(Url.getMenu, {}),
   // 获取课程表

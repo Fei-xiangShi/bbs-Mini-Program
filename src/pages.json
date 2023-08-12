@@ -41,6 +41,9 @@
     },
     {
       "path": "pages/bbs/articleDetail"
+    },
+    {
+      "path": "pages/home/modifyPersonalInfo"
     }
   ],
   "globalStyle": {
