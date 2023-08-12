@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import Api from "@/config/apiConfig";
+import Api from "@/public/api";
 import { ref, onMounted } from "vue";
 
 let menu_top = ref<string>("");

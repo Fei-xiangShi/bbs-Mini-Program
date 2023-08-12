@@ -10,7 +10,7 @@
 <script setup lang="ts">
 import { onLoad } from "@dcloudio/uni-app";
 import routes from "@/config/routes";
-import apiConfig from "@/config/apiConfig";
+import Api from "@/public/api";
 import Article from "@/model/article";
 import { ref } from "vue";
 
@@ -30,7 +30,7 @@ let article = ref(new Article());
 
 onLoad((option) => {
   articleId = option?.articleId;
-  apiConfig.getArticleById(articleId).then((res: any) => {
+  Api.getArticleById(articleId).then((res: any) => {
     if (res.statusCode === 200) {
       article.value = res.data;
     } else {

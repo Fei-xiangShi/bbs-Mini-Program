@@ -31,7 +31,7 @@
 <script setup lang="ts">
 import { onLoad } from "@dcloudio/uni-app";
 import { ref } from "vue";
-import Api from "@/config/apiConfig";
+import Api from "@/public/api";
 
 let user = ref(uni.getStorageSync("user"));
 onLoad(() => {});

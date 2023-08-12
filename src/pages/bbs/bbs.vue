@@ -22,7 +22,7 @@
 
 <script setup lang="ts">
 import articleItem from "@/components/articleItem.vue";
-import Api from "@/config/apiConfig";
+import Api from "@/public/api";
 import { onLoad, onReachBottom, onPullDownRefresh } from "@dcloudio/uni-app";
 import { reactive, onMounted } from "vue";
 import { ArticleList } from "@/model/articleList";

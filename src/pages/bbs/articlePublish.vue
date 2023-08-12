@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import Api from "@/config/apiConfig";
+import Api from "@/public/api";
 import Ariticle from "@/model/article";
 import { onLoad } from "@dcloudio/uni-app";
 import { ref } from "vue";

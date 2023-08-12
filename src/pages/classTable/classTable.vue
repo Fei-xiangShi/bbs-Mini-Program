@@ -7,7 +7,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import Api from "@/config/apiConfig";
+import Api from "@/public/api";
 
 let classTable = ref(uni.getStorageSync("classTable"));
 
