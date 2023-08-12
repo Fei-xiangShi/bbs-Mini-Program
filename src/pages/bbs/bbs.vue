@@ -32,6 +32,7 @@ import routes from "@/config/routes";
 import ResponseCheck from "@/utils/responseCheck";
 
 let isSearching = false;
+let isViewing = uni.getStorageSync("isViewing");
 
 const navToArticlePublishPage = () => {
   uni.navigateTo({
@@ -41,8 +42,27 @@ const navToArticlePublishPage = () => {
 
 const artList = reactive(new ArticleList());
 
+const concatenatingArticleList = (response: any) => {
+  response.then((res: any) => {
+    uni.stopPullDownRefresh();
+    if (res.data && res.data.length > 0) {
+      //每次请求页数加一
+      artList.page++;
+      artList.list = [...artList.list, ...res.data];
+      return;
+    }
+    uni.showToast({
+      title: "没有更多了",
+      icon: "none",
+    });
+  });
+};
+
 const searchPassage = (e: string | number) => {
   isSearching = true;
+  artList.list = [];
+  artList.page = 1;
+  uni.setStorageSync("isViewing", e);
   if (!e) {
     uni.showToast({
       title: "请输入关键字",
@@ -50,75 +70,47 @@ const searchPassage = (e: string | number) => {
     });
     return;
   }
-  let res = null;
+  let response = null;
   if (!isNaN(Number(e))) {
-    res = Api.searchArticle(1, e);
+    response = Api.searchArticle("BY_ID", e, artList.page);
   } else {
-    res = Api.searchArticle(2, e);
+    response = Api.searchArticle("BY_AUTHOR_OR_TITLE", e, artList.page);
   }
-  ResponseCheck.resIsSuccess(res);
-  res.then((res: any) => {
-    console.log(res);
-    if (res.data && res.data.length > 0) {
-      artList.list = res.data;
-      return;
-    }
-    uni.showToast({
-      title: "没有更多了",
-      icon: "none",
-    });
-  });
+  ResponseCheck.resIsSuccess(response);
+  concatenatingArticleList(response);
 };
 
 const getCategoryArticle = (category: number) => {
-  Api.getArticleListByCategory(category, artList.page).then((res: any) => {
-    uni.stopPullDownRefresh();
-    console.log(res);
-    ResponseCheck.resIsSuccess(res);
-    if (res.data && res.data.length > 0) {
-      //每次请求页数加一
-      artList.page++;
-      artList.list = [...artList.list, ...res.data];
-      return;
-    }
-
-    uni.showToast({
-      title: "没有更多了",
-      icon: "none",
-    });
-  });
+  let response = Api.getArticleListByCategory(category, artList.page)
+  ResponseCheck.resIsSuccess(response);
+  concatenatingArticleList(response);
 };
 
 const getlist = (getWhat: number | string) => {
   if (isSearching) {
     searchPassage(getWhat);
-  } else if (typeof getWhat === "number") {
-    getCategoryArticle(getWhat);
   } else {
-    uni.showToast({
-      title: "请求错误",
-      icon: "none",
-    });
+    getCategoryArticle(Number(getWhat));
   }
 };
 onLoad(() => {
   isSearching = false;
-  let category = uni.getStorageSync("category");
+  isViewing = uni.getStorageSync("isViewing");
   artList.list = [];
   artList.page = 1;
-  getlist(category);
+  getlist(isViewing);
 });
 
 onReachBottom(() => {
-  let category = uni.getStorageSync("category");
-  getlist(category);
+  isViewing = uni.getStorageSync("isViewing");
+  getlist(isViewing);
 });
 
 onPullDownRefresh(() => {
-  let category = uni.getStorageSync("category");
+  isViewing = uni.getStorageSync("isViewing");
   artList.list = [];
   artList.page = 1;
-  getlist(category);
+  getlist(isViewing);
 });
 
 onMounted(() => {

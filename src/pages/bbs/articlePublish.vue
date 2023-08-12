@@ -24,8 +24,8 @@
 import Api from "@/config/apiConfig";
 import Ariticle from "@/model/article";
 import { onLoad } from "@dcloudio/uni-app";
-import routes from "@/config/routes";
 import { ref } from "vue";
+import routes from "@/config/routes";
 
 let article = ref(new Ariticle());
 
@@ -34,7 +34,7 @@ const publish = () => {
     return;
   }
   article.value.visibility = 1;
-  article.value.category = 0;
+  article.value.category = 2
   article.value.status = 0;
   Api.publishArticle(article.value).then((res: any) => {
     console.log(article.value);
@@ -43,27 +43,8 @@ const publish = () => {
         title: "发布成功",
         icon: "none",
       });
-      uni.reLaunch({
-        url: routes.bbs.path,
-      });
-    } else if (res.statusCode === 401) {
-      uni.showToast({
-        title: "请先登录",
-        icon: "none",
-      });
-      uni.navigateTo({
-        url: routes.login.path,
-      });
-    } else if (res.statusCode === 404) {
-      uni.showToast({
-        title: "网络错误",
-        icon: "none",
-      });
-    } else {
-      uni.showToast({
-        title: "发布失败: " + res.data,
-        icon: "none",
-      });
+      uni.reLaunch({url: routes.bbs.path});
+      
     }
   });
 };

@@ -17,7 +17,8 @@
 import Api from "@/config/apiConfig";
 import { onLoad } from "@dcloudio/uni-app";
 import { ref } from "vue";
-import User from "@/model/userInfo";
+import routes from "@/config/routes";
+import initUser from "@/utils/initUser";
 
 const credentials = ref({
   account: "",
@@ -33,8 +34,9 @@ const login = async () => {
         .split(";")
         .find((row: string) => row.startsWith("doorKey="))
     );
-    uni.switchTab({
-      url: "/pages/index/index",
+    initUser();
+    uni.reLaunch({
+      url: routes.index.path,
     });
   } else {
     uni.showToast({
@@ -45,29 +47,17 @@ const login = async () => {
 };
 
 onLoad(() => {
-  if (!uni.getStorageSync("jwtIsExpired")) {
-    if(uni.getStorageSync("user")){
-      uni.switchTab({
-        url: "/pages/index/index",
+  initUser();
+  if (uni.getStorageSync("jwtIsExpired") === false) {
+    if (uni.getStorageSync("user")) {
+      uni.reLaunch({
+        url: routes.index.path,
       });
+      return;
     }
-    let user = new User();
-    Api.home().then((res: any) => {
-      console.log(res);
-      user.id = res.data.id;
-      user.name = res.data.name;
-      user.accountId = res.data.accountId;
-      user.studentId = res.data.studentId;
-      user.gmtCreate = res.data.gmtCreate;
-      user.gmtModified = res.data.gmtModified;
-      user.siteAdmin = res.data.siteAdmin;
-      user.avatarUrl = res.data.avatarUrl;
-      user.bio = res.data.bio;
-      user.email = res.data.email;
-      uni.setStorageSync("user", user);
-    });
-    uni.switchTab({
-      url: "/pages/index/index",
+    initUser();
+    uni.reLaunch({
+      url: routes.index.path,
     });
   }
 });

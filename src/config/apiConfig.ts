@@ -15,6 +15,8 @@ const Url = {
 };
 
 const Api = {
+  // 获取登录状态
+  getJwtIsExpired: () => http.get("/", {}),
   // 获取首页数据
   frontPage: () => http.get(Url.frontPage, {}),
   // 获取帖子数据
@@ -25,10 +27,11 @@ const Api = {
     http.get(Url.getArticleListByCategory + category, {
       page: page,
     }),
-  searchArticle: (method: number, condition: string | number) =>
+  searchArticle: (method: "BY_ID" | "BY_AUTHOR_OR_TITLE", condition: string | number, page: number) =>
     http.get(Url.searchArticle, {
       method: method,
       condition: condition,
+      page: page,
     }),
   publishArticle: (article: object) => http.post(Url.publishArticle, article),
   // 登录

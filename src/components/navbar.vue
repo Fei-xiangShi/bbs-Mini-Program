@@ -1,6 +1,6 @@
 <template>
   <view>
-    <sidebar @tap="toggleSidebar" class="sidebar" v-if="showSidebar"></sidebar>
+    <sidebar class="sidebar" v-if="showSidebar"></sidebar>
     <u-button
       @tap="toggleSidebar"
       color="linear-gradient(to right, rgb(66, 83, 216), rgb(213, 51, 186))"

@@ -1,4 +1,5 @@
 import SiteConfig from "@/config/requestUrl";
+import ResponseCheck from "@/utils/responseCheck";
 
 const request = (
   url: string,
@@ -24,11 +25,15 @@ const request = (
 };
 
 const get = (url: string, data: string | object | ArrayBuffer) => {
-  return request(url, "GET", data);
+  let res = request(url, "GET", data);
+  ResponseCheck.resIsSuccess(res);
+  return res;
 };
 
 const post = (url: string, data: string | object | ArrayBuffer) => {
-  return request(url, "POST", data);
+  let res = request(url, "POST", data);
+  ResponseCheck.resIsSuccess(res);
+  return res;
 };
 
 const http = {

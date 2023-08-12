@@ -1,20 +1,21 @@
 <template>
   <view class="sidebar">
     <view class="menu">
-      <view class="menu-item" v-for="item in menuList" :key="item">
-        <view :id="item" @click="changeCategory">{{ item }}</view>
+      <view class="menu-item" v-for="item in menuList" :key="item.id">
+        <view :id="item.id" @tap="changeCategory">{{ item.name }}</view>
       </view>
     </view>
   </view>
 </template>
 
 <script setup lang="ts">
+import routes from "@/config/routes";
 let menuList = uni.getStorageSync("menu") || [];
 
 const changeCategory = (e: any) => {
-  uni.$emit("category", e.target.id);
-  uni.switchTab({
-    url: "/pages/bbs/bbs",
+  uni.setStorageSync("isViewing", e.target.id);
+  uni.reLaunch({
+    url: routes.bbs.path,
   });
 };
 </script>
