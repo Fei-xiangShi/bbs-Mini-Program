@@ -17,7 +17,7 @@ const setJwtExpiration = () => {
 
 const setUser = () => {
   let user = uni.getStorageSync("user");
-  if (!user.id) {
+  if (!user.id || user.length === 0) {
     Api.home().then((res: any) => {
       if (res.statusCode === 200) {
         user = res.data;

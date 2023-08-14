@@ -47,7 +47,6 @@ const props = defineProps({
 
 let showReplyBox = ref(false);
 const changeReplyBox = () => {
-  console.log(props.reply);
   showReplyBox.value = !showReplyBox.value;
 };
 
