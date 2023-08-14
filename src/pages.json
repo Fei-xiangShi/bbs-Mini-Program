@@ -8,7 +8,10 @@
   },
   "pages": [
     {
-      "path": "pages/login/login"
+      "path": "pages/login/login",
+      "style":{
+        "navigationStyle":"custom"
+      }
     },
     {
       "path": "pages/index/index",

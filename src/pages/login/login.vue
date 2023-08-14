@@ -1,6 +1,9 @@
 <template>
-  <div class="login-container">
-    <h1>登录页面</h1>
+  <view class="blackDrawer"/>
+  <view
+    class="login-container"
+    style="background-image: url(../../static/images/login/loginBackground.jpg)"
+  >
     <form @submit="login">
       <input v-model="credentials.account" type="text" placeholder="用户名" />
       <input
@@ -10,7 +13,7 @@
       />
       <button type="submit" @tap="login">登录</button>
     </form>
-  </div>
+  </view>
 </template>
 
 <script setup lang="ts">
@@ -64,12 +67,26 @@ onLoad(() => {
 </script>
 
 <style>
+.blackDrawer
+{
+  top: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.4;
+}
 .login-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 form {
@@ -79,6 +96,8 @@ form {
 }
 
 input {
+  border: 1px solid black;
+  border-radius: 5%;
   margin-bottom: 10px;
   padding: 5px;
   width: 200px;
