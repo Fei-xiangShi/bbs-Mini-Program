@@ -7,6 +7,7 @@ interface Reply {
   isDelete: boolean;
   rootReplyId: number;
   parentReplyId: number;
+  replyList: ReplyList;
 }
 
 export default class ReplyList {

@@ -9,7 +9,7 @@
   </view>
   <view>-----------------------</view>
   <view class="reply-list">
-    <ReplyItem v-for="reply in replyList.list" :key="reply.id" :reply="reply" :articleId="articleId" />
+    <ReplyItem v-for="reply in replyList.list" :key="reply.id" :reply="reply" :articleId=Number(articleId) />
   </view>
   <view>
     <u-button @tap="getReplyList">加载更多</u-button>
