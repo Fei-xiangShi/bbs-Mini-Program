@@ -11,7 +11,7 @@
         type="password"
         placeholder="密码"
       />
-      <button type="submit" @tap="login">登录</button>
+      <button type="submit" @tap="login"/>
     </form>
   </view>
 </template>
@@ -74,7 +74,7 @@ onLoad(() => {
   width: 100%;
   height: 100%;
   background-color: black;
-  opacity: 0.4;
+  opacity: 0.5;
 }
 .login-container {
   display: flex;
@@ -104,10 +104,18 @@ input {
 }
 
 button {
+  width: 60px;
+  height: 60px;
   padding: 8px 16px;
   background-color: #007bff;
   color: white;
   border: none;
   cursor: pointer;
+  border-radius: 100%;
+  background-image: url(../../static/icons/login/login.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 40px;
+
 }
 </style>
