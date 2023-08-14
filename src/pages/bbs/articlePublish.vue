@@ -11,6 +11,11 @@
         placeholder="内容"
         v-model="article.content"
       ></u-input>
+      <u-input
+        class="content"
+        placeholder="图片链接"
+        v-model="article.thumbnailUrl"
+      ></u-input>
     </view>
     <view>
       <u-button class="primary" @tap="publish">{{
