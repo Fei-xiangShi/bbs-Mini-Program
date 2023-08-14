@@ -1,18 +1,28 @@
 <template>
-  <view class="blackDrawer"/>
+  <view class="blackDrawer" />
   <view
     class="login-container"
     style="background-image: url(../../static/images/login/loginBackground.jpg)"
   >
-    <form @submit="login">
-      <input v-model="credentials.account" type="text" placeholder="用户名" />
-      <input
-        v-model="credentials.password"
-        type="password"
-        placeholder="密码"
-      />
-      <button type="submit" @tap="login"/>
-    </form>
+    <view class="inner-container">
+      <img class="user-img" src="../../static/images/login/userImg.png"/>
+      <!-- <view class="decoration-text">你是我的，我是你的谁</view> -->
+      <form @submit="login">
+        <input
+          v-model="credentials.account"
+          type="text"
+          placeholder="用户名"
+          placeholder-style="color:black;"
+        />
+        <input
+          v-model="credentials.password"
+          type="password"
+          placeholder="密码"
+          placeholder-style="color:black;"
+        />
+        <button type="submit" @tap="login" />
+      </form>
+    </view>
   </view>
 </template>
 
@@ -67,8 +77,9 @@ onLoad(() => {
 </script>
 
 <style>
-.blackDrawer
-{
+.blackDrawer {
+  pointer-events: none; /* 允许与位于其下方的内容进行交互 */
+  z-index: 1; /* 将遮罩层放置在内容上方 */
   top: 0;
   position: absolute;
   width: 100%;
@@ -76,6 +87,7 @@ onLoad(() => {
   background-color: black;
   opacity: 0.5;
 }
+
 .login-container {
   display: flex;
   flex-direction: column;
@@ -89,6 +101,29 @@ onLoad(() => {
   background-size: cover;
 }
 
+.inner-container{
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  bottom: 100px;
+}
+
+.user-img{
+  margin-bottom: 40px;
+  width: 150px;
+  height: 150px;
+  border-radius: 100%;
+}
+
+.decoration-text{
+  
+}
+
 form {
   display: flex;
   flex-direction: column;
@@ -97,10 +132,13 @@ form {
 
 input {
   border: 1px solid black;
-  border-radius: 5%;
-  margin-bottom: 10px;
+  border-radius: 10px 10px 10px 10px;
+  margin-bottom: 20px;
   padding: 5px;
-  width: 200px;
+  width: 180px;
+  height: 10px;
+  background-color: white;
+  color: black;
 }
 
 button {
@@ -116,6 +154,5 @@ button {
   background-repeat: no-repeat;
   background-position: center;
   background-size: 40px;
-
 }
 </style>
