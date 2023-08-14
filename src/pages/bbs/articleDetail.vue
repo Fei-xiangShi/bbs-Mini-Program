@@ -1,15 +1,23 @@
 <template>
+  <view class="image-container">
+    <img :src="article.thumbnailUrl" alt="Image" />
+  </view>
   <view class="article">
     <view class="title">{{ article.title }}</view>
     <view class="content">{{ article.content }}</view>
-    <u-button @tap="navToArticlePublishPage">修改</u-button>
+    <u-button @tap="navToArticlePublishPage" v-if="canModify">修改</u-button>
   </view>
   <view class="like">
     <u-button @tap="like">点赞</u-button>
   </view>
   <view>-----------------------</view>
   <view class="reply-list">
-    <ReplyItem v-for="reply in replyList.list" :key="reply.id" :reply="reply" :articleId=Number(articleId) />
+    <ReplyItem
+      v-for="reply in replyList.list"
+      :key="reply.id"
+      :reply="reply"
+      :articleId="Number(articleId)"
+    />
   </view>
   <view>
     <u-button @tap="getReplyList">加载更多</u-button>
@@ -75,14 +83,14 @@ const like = () => {
       });
     }
   });
-}
+};
 
 let articleId = 0;
 let article = ref(new Article());
 const replyList = reactive(new ReplyList());
 
 const getReplyList = () => {
-  let res = Api.getReplyList(articleId, replyList.page)
+  let res = Api.getReplyList(articleId, replyList.page);
   concatenatingReplyList(res);
 };
 
@@ -102,11 +110,14 @@ const concatenatingReplyList = (response: any) => {
   });
 };
 
+let canModify = ref(false);
 onLoad((option) => {
   articleId = option?.articleId;
   Api.getArticleById(articleId).then((res: any) => {
     if (res.statusCode === 200) {
       article.value = res.data;
+      canModify.value =
+        uni.getStorageSync("user").id === article.value.author.id;
     } else {
       uni.showToast({
         title: "获取文章失败: " + res.data,
@@ -116,7 +127,6 @@ onLoad((option) => {
   });
   getReplyList();
 });
-
 </script>
 
 <style lang="scss"></style>
