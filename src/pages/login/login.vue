@@ -5,8 +5,7 @@
     style="background-image: url(../../static/images/login/loginBackground.jpg)"
   >
     <view class="inner-container">
-      <img class="user-img" src="../../static/images/login/userImg.png"/>
-      <!-- <view class="decoration-text">你是我的，我是你的谁</view> -->
+      <img class="user-img" src="../../static/images/login/userImg.png" />
       <form @submit="login">
         <input
           v-model="credentials.account"
@@ -22,6 +21,10 @@
         />
         <button type="submit" @tap="login" />
       </form>
+      <view class="line" />
+      <view class="login-passage">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一处风声，看落花流萤，那粉色佳人，摇曳，摇曳。苍天赐予一个多情的梦，在花落之间。怎堪月痩影单，残风缠绵，好一个悲曲，绚烂绚烂。
+      </view>
     </view>
   </view>
 </template>
@@ -101,7 +104,7 @@ onLoad(() => {
   background-size: cover;
 }
 
-.inner-container{
+.inner-container {
   position: absolute;
   z-index: 2;
   display: flex;
@@ -110,18 +113,17 @@ onLoad(() => {
   justify-content: center;
   height: 100vh;
   width: 100%;
-  bottom: 100px;
+  bottom: 0px;
 }
 
-.user-img{
+.user-img {
   margin-bottom: 40px;
   width: 150px;
   height: 150px;
   border-radius: 100%;
 }
 
-.decoration-text{
-  
+.decoration-text {
 }
 
 form {
@@ -154,5 +156,24 @@ button {
   background-repeat: no-repeat;
   background-position: center;
   background-size: 40px;
+}
+
+.line {
+  float: right;
+  width: 30%;
+  height: 0.5px;
+  margin-top: 30px;
+  background: rgb(208, 208, 208);
+  position: relative;
+  text-align: center;
+  opacity: 0.8;
+}
+
+.login-passage{
+  color: rgb(208, 208, 208);
+  margin-top: 20px;
+  margin-left: 20%;
+  margin-right: 20%;
+  font-weight: 70;
 }
 </style>
