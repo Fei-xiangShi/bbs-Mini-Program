@@ -4,7 +4,7 @@
     <view class="info">
       <view class="author">{{ article.author.name }}</view>
       <view class="date">{{ article.gmtCreate }}</view>
-      <view class="comments">评论数</view>
+      <view class="comments">{{ article.commentCount }}</view>
     </view>
     <view class="image-container">
       <img :src="article.thumbnailUrl" alt="Image" />

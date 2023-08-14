@@ -27,6 +27,12 @@ const Api = {
     }),
   publishArticle: (article: object) =>
     http.post(apiUrl.publishArticle, article),
+  likeArticle: (id: number) => http.get(apiUrl.likeArticle + id, {}),
+  reply: (id: number, reply: object) => http.post(apiUrl.reply + id, reply),
+  getReplyList: (id: number, page: number) =>
+    http.get(apiUrl.reply + id, { page: page }),
+  getSecondaryReplyList: (id: number, page: number, root: number) =>
+    http.get(apiUrl.reply + id, { page: page, rootReplyId: root }),
   // 登录
   swuLogin: (accountPack: object) => http.post(apiUrl.swuLogin, accountPack),
   // 获取用户信息

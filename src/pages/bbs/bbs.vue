@@ -81,7 +81,7 @@ const searchPassage = (e: string | number) => {
 };
 
 const getCategoryArticle = (category: number) => {
-  let response = Api.getArticleListByCategory(category, artList.page)
+  let response = Api.getArticleListByCategory(category, artList.page);
   ResponseCheck.resIsSuccess(response);
   concatenatingArticleList(response);
 };

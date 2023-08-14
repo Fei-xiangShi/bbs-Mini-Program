@@ -8,6 +8,9 @@ export interface ArticleInfo {
   accountId: string;
   avatarUrl: string;
   thumbnailUrl: string;
+  viewCount: number;
+  commentCount: number;
+  likeCount: number;
 }
 
 export class ArticleList {

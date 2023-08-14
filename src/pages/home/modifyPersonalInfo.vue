@@ -32,6 +32,7 @@
 import { onLoad } from "@dcloudio/uni-app";
 import { ref } from "vue";
 import Api from "@/public/api";
+import RouteConfig from "@/config/routes";
 
 let user = ref(uni.getStorageSync("user"));
 onLoad(() => {});
@@ -41,6 +42,12 @@ const pushToServer = () => {
     if (res.statusCode === 200) {
       uni.setStorageSync("user", user.value);
     }
+    uni.showToast({
+      title: "修改成功",
+      icon: "none",
+    });
+    uni.reLaunch({
+      url: RouteConfig.home.path,});
   });
 };
 </script>

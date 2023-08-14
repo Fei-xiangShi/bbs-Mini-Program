@@ -1,4 +1,4 @@
-import Api from "@/config/apiConfig";
+import Api from "@/public/api";
 
 const setJwtExpiration = () => {
   let jwtIsExpired = true;
