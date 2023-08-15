@@ -10,7 +10,7 @@
         <input
           v-model="credentials.account"
           type="text"
-          placeholder="用户名"
+          placeholder="学号/校园网账号"
           placeholder-style="color:black;"
         />
         <input
@@ -156,12 +156,12 @@ form {
 }
 
 input {
-  border: 1px solid black;
-  border-radius: 10px 10px 10px 10px;
-  margin-bottom: 20px;
+  border: none;
+  border-radius: 8px;
+  margin-bottom: 15px;
   padding: 5px;
-  width: 180px;
-  height: 10px;
+  width: 100%;
+  height: 20px;
   background-color: white;
   color: black;
 }
