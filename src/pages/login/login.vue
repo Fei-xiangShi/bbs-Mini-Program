@@ -26,8 +26,7 @@
             active-color="green"
             name="agree"
           />
-          <view style="color: white" 
-                class="login-checkbox-text"
+          <view style="color: white" class="login-checkbox-text"
             >我已详细阅读并同意了<span
               class="user-agreement"
               @click="showUserAgreement"
@@ -43,9 +42,14 @@
         一处风声，看落花流萤，那粉色佳人，摇曳，摇曳。苍天赐予一个多情的梦，在花落之间。怎堪月痩影单，残风缠绵，好一个悲曲，绚烂绚烂。
       </view>
       <view class="device-information">
-        <view>19.19.19</view>
-        <view>重庆市西南大学</view>
-        <view>iPhone13MAX</view>
+        <view>欢迎来自 {{ IpInfo.data.addr }} 的用户</view>
+        <view
+          >您现在位于 {{ IpInfo.data.province + " " + IpInfo.data.city }}</view
+        >
+        <view
+          >您现在正在使用
+          {{ deviceInfo.osName + " " + deviceInfo.osVersion }}</view
+        >
       </view>
     </view>
     <u-popup
@@ -71,13 +75,20 @@ import routes from "@/config/routes";
 import initUser from "@/utils/initUser";
 
 let deviceInfo = uni.getSystemInfoSync();
-Api.getIpInfo()
-  .then((res) => {
-    uni.setStorageSync("ipInfo", res);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+let IpInfo = ref({
+  code: 0,
+  message: "",
+  ttl: "",
+  data: {
+    addr: "",
+    country: "",
+    province: "",
+    city: "",
+    isp: "",
+    zone_id: "",
+    country_code: 0,
+  },
+});
 
 let isAgree = ref(false);
 let isShowingUserAgreement = ref(false);
@@ -115,11 +126,14 @@ const login = async () => {
       title: "登录失败",
       icon: "none",
     });
-    isloading.value = false;
   }
+  isloading.value = false;
 };
 
 onLoad(() => {
+  Api.getIpInfo().then((res: any) => {
+    IpInfo.value = res.data;
+  });
   initUser();
   if (uni.getStorageSync("jwtIsExpired") === false) {
     if (uni.getStorageSync("user")) {
@@ -137,7 +151,7 @@ onLoad(() => {
 </script>
 
 <style>
-.device-information{
+.device-information {
   text-align: right;
   color: rgb(110, 110, 110);
   font-size: 14px;
@@ -146,7 +160,7 @@ onLoad(() => {
   right: 2%;
 }
 
-.login-checkbox-text{
+.login-checkbox-text {
   position: relative;
   top: 3px;
 }

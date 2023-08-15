@@ -2,7 +2,7 @@ import SiteConfig from "@/config/requestUrl";
 
 const Url = {
   // ip
-  getIpInfo: "https://app.bilibili.com/x/resource/ip",
+  getIpInfo: "/ip",
   // 主页
   frontPage: "/frontPage",
   // 文章
