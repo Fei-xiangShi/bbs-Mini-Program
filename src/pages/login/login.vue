@@ -19,11 +19,25 @@
           placeholder="密码"
           placeholder-style="color:black;"
         />
-        <button type="submit" @tap="login" />
+        <u-checkbox-group direction="horizontal">
+          <u-checkbox
+            @change="changeAccessbility"
+            shape="circle"
+            active-color="green"
+          />
+          <view style="color: white">我已详细阅读并同意了用户协议</view>
+        </u-checkbox-group>
+        <button
+          @tap="login"
+          v-if="!isloading"
+          :disabled="isAgree === false"
+        />
+        <u-loading-icon mode="semicircle" size="45" v-if="isloading" />
       </form>
+      <view class="readMe"> </view>
       <view class="line" />
       <view class="login-passage">
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一处风声，看落花流萤，那粉色佳人，摇曳，摇曳。苍天赐予一个多情的梦，在花落之间。怎堪月痩影单，残风缠绵，好一个悲曲，绚烂绚烂。
+        一处风声，看落花流萤，那粉色佳人，摇曳，摇曳。苍天赐予一个多情的梦，在花落之间。怎堪月痩影单，残风缠绵，好一个悲曲，绚烂绚烂。
       </view>
     </view>
   </view>
@@ -36,12 +50,20 @@ import { ref } from "vue";
 import routes from "@/config/routes";
 import initUser from "@/utils/initUser";
 
+let isAgree = ref(false);
+
+const changeAccessbility = () => {
+  isAgree.value = !isAgree.value;
+};
+
 const credentials = ref({
   account: "",
   password: "",
 });
 
+let isloading = ref(false);
 const login = async () => {
+  isloading.value = true;
   const response: any = await Api.swuLogin(credentials.value);
   if (response.header["1235d6"] === "true") {
     uni.setStorageSync(
@@ -59,6 +81,7 @@ const login = async () => {
       title: "登录失败",
       icon: "none",
     });
+    isloading.value = false;
   }
 };
 
@@ -80,6 +103,9 @@ onLoad(() => {
 </script>
 
 <style>
+.login-passage {
+  text-indent: 2rem;
+}
 .blackDrawer {
   pointer-events: none; /* 允许与位于其下方的内容进行交互 */
   z-index: 1; /* 将遮罩层放置在内容上方 */
@@ -121,9 +147,6 @@ onLoad(() => {
   width: 150px;
   height: 150px;
   border-radius: 100%;
-}
-
-.decoration-text {
 }
 
 form {
@@ -169,7 +192,7 @@ button {
   opacity: 0.8;
 }
 
-.login-passage{
+.login-passage {
   color: rgb(208, 208, 208);
   margin-top: 20px;
   margin-left: 20%;
