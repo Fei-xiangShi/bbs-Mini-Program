@@ -25,7 +25,7 @@
             shape="circle"
             active-color="green"
           />
-          <view style="color: white">我已详细阅读并同意了用户协议</view>
+          <view style="color: white">我已详细阅读并同意了<span class="user-agreement" @click="showUserAgreement">用户协议</span></view>
         </u-checkbox-group>
         <button
           @tap="login"
@@ -34,12 +34,24 @@
         />
         <u-loading-icon mode="semicircle" size="45" v-if="isloading" />
       </form>
-      <view class="readMe"> </view>
       <view class="line" />
       <view class="login-passage">
         一处风声，看落花流萤，那粉色佳人，摇曳，摇曳。苍天赐予一个多情的梦，在花落之间。怎堪月痩影单，残风缠绵，好一个悲曲，绚烂绚烂。
       </view>
     </view>
+    <u-popup
+        position="bottom"
+        :show="isShowingUserAgreement"
+        @close="showUserAgreement"
+      >
+        <view style="padding: 20px;">
+          <view style="font-size: 20px; font-weight: bold;">用户协议</view>
+          <view style="margin-top: 20px;">
+            https://blog.csdn.net/Mr_Dong_cson/
+            article/details/123136258
+          </view>
+        </view>
+      </u-popup>
   </view>
 </template>
 
@@ -51,6 +63,11 @@ import routes from "@/config/routes";
 import initUser from "@/utils/initUser";
 
 let isAgree = ref(false);
+let isShowingUserAgreement = ref(false);
+
+const showUserAgreement = () => {
+  isShowingUserAgreement.value = !isShowingUserAgreement.value;
+};
 
 const changeAccessbility = () => {
   isAgree.value = !isAgree.value;
@@ -103,6 +120,11 @@ onLoad(() => {
 </script>
 
 <style>
+.user-agreement {
+  color: #07f74f;
+  cursor: pointer;
+}
+
 .login-passage {
   text-indent: 2rem;
 }
