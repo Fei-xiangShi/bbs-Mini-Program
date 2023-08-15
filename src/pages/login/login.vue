@@ -26,7 +26,8 @@
             active-color="green"
             name="agree"
           />
-          <view style="color: white"
+          <view style="color: white" 
+                class="login-checkbox-text"
             >我已详细阅读并同意了<span
               class="user-agreement"
               @click="showUserAgreement"
@@ -40,6 +41,11 @@
       <view class="line" />
       <view class="login-passage">
         一处风声，看落花流萤，那粉色佳人，摇曳，摇曳。苍天赐予一个多情的梦，在花落之间。怎堪月痩影单，残风缠绵，好一个悲曲，绚烂绚烂。
+      </view>
+      <view class="device-information">
+        <view>19.19.19</view>
+        <view>重庆市西南大学</view>
+        <view>iPhone13MAX</view>
       </view>
     </view>
     <u-popup
@@ -131,6 +137,20 @@ onLoad(() => {
 </script>
 
 <style>
+.device-information{
+  text-align: right;
+  color: rgb(110, 110, 110);
+  font-size: 14px;
+  position: fixed;
+  bottom: 2%;
+  right: 2%;
+}
+
+.login-checkbox-text{
+  position: relative;
+  top: 3px;
+}
+
 .user-agreement {
   color: #07f74f;
   cursor: pointer;
@@ -139,6 +159,7 @@ onLoad(() => {
 .login-passage {
   text-indent: 2rem;
 }
+
 .blackDrawer {
   pointer-events: none; /* 允许与位于其下方的内容进行交互 */
   z-index: 1; /* 将遮罩层放置在内容上方 */
@@ -176,9 +197,10 @@ onLoad(() => {
 }
 
 .user-img {
+  margin-top: 20px;
   margin-bottom: 40px;
-  width: 150px;
-  height: 150px;
+  width: 10rem;
+  height: 10rem;
   border-radius: 100%;
 }
 
@@ -203,6 +225,7 @@ button {
   width: 60px;
   height: 60px;
   padding: 8px 16px;
+  margin-top: 15px;
   background-color: #007bff;
   color: white;
   border: none;
