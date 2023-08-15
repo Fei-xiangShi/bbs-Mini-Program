@@ -2,6 +2,8 @@ import { http } from "./request";
 import apiUrl from "@/config/apiConfig";
 
 const Api = {
+  //获得ip信息
+  getIpInfo: () => http.get(apiUrl.getIpInfo, {}),
   // 获取登录状态
   getJwtIsExpired: () => http.get("/", {}),
   // 获取首页数据

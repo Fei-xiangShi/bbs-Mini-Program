@@ -1,6 +1,8 @@
 import SiteConfig from "@/config/requestUrl";
 
 const Url = {
+  // ip
+  getIpInfo: "https://app.bilibili.com/x/resource/ip",
   // 主页
   frontPage: "/frontPage",
   // 文章

@@ -63,7 +63,15 @@ import { onLoad } from "@dcloudio/uni-app";
 import { ref } from "vue";
 import routes from "@/config/routes";
 import initUser from "@/utils/initUser";
-import { reactive } from "vue";
+
+let deviceInfo = uni.getSystemInfoSync();
+Api.getIpInfo()
+  .then((res) => {
+    uni.setStorageSync("ipInfo", res);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 let isAgree = ref(false);
 let isShowingUserAgreement = ref(false);
@@ -186,7 +194,7 @@ input {
   margin-bottom: 15px;
   padding: 5px;
   width: 100%;
-  height: 20px;
+  height: 30px;
   background-color: white;
   color: black;
 }
