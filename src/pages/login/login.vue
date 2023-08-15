@@ -24,14 +24,17 @@
             @change="changeAccessbility"
             shape="circle"
             active-color="green"
+            name="agree"
           />
-          <view style="color: white">我已详细阅读并同意了<span class="user-agreement" @click="showUserAgreement">用户协议</span></view>
+          <view style="color: white"
+            >我已详细阅读并同意了<span
+              class="user-agreement"
+              @click="showUserAgreement"
+              >用户协议</span
+            ></view
+          >
         </u-checkbox-group>
-        <button
-          @tap="login"
-          v-if="!isloading"
-          :disabled="isAgree === false"
-        />
+        <button @tap="login" v-if="!isloading" :disabled="isAgree === false" />
         <u-loading-icon mode="semicircle" size="45" v-if="isloading" />
       </form>
       <view class="line" />
@@ -40,18 +43,17 @@
       </view>
     </view>
     <u-popup
-        position="bottom"
-        :show="isShowingUserAgreement"
-        @close="showUserAgreement"
-      >
-        <view style="padding: 20px;">
-          <view style="font-size: 20px; font-weight: bold;">用户协议</view>
-          <view style="margin-top: 20px;">
-            https://blog.csdn.net/Mr_Dong_cson/
-            article/details/123136258
-          </view>
+      position="bottom"
+      :show="isShowingUserAgreement"
+      @close="showUserAgreement"
+    >
+      <view style="padding: 20px">
+        <view style="font-size: 20px; font-weight: bold">用户协议</view>
+        <view style="margin-top: 20px">
+          https://blog.csdn.net/Mr_Dong_cson/article/details/123136258
         </view>
-      </u-popup>
+      </view>
+    </u-popup>
   </view>
 </template>
 
@@ -61,6 +63,7 @@ import { onLoad } from "@dcloudio/uni-app";
 import { ref } from "vue";
 import routes from "@/config/routes";
 import initUser from "@/utils/initUser";
+import { reactive } from "vue";
 
 let isAgree = ref(false);
 let isShowingUserAgreement = ref(false);
