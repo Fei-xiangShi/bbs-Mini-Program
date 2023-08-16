@@ -124,6 +124,7 @@ onMounted(() => {
   width: 95%;
   margin: 0 auto;
   padding: 10upx;
+  align-items: center;
 }
 .navToAriticlePublishPage {
   background: linear-gradient(
