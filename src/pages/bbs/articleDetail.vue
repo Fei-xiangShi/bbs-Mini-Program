@@ -43,12 +43,15 @@ import ReplyItem from "@/components/replyItem.vue";
 const reply = ref(new Reply());
 const commitReply = () => {
   Api.reply(articleId, reply.value).then((res: any) => {
-    console.log(reply.value);
     if (res.statusCode === 200) {
       uni.showToast({
         title: "评论成功",
         icon: "none",
       });
+      replyList.list = [];
+      replyList.page = 1;
+      getReplyList();
+      reply.value.content = "";
     } else {
       uni.showToast({
         title: "评论失败: " + res.errMsg,

@@ -1,16 +1,15 @@
 <template>
-  <navbar />
-  <view>123</view>
-  <view class="navToAriticlePublishPage" @tap="navToArticlePublishPage"
+  <navbar :isViewing="isViewing" class="navbar" @openSidebar="toggleStyle"/>
+  <view :class="body">
+    <view class="navToAriticlePublishPage" @tap="navToArticlePublishPage"
     ><u-text>+</u-text></view
   >
-  <view>
+  <view class="search-bar">
     <searchBar
-      placeholder="请输入关键字"
+      placeholder="查找标题或作者"
       class="header-search-bar"
       @search="searchPassage"
     />
-    
   </view>
   <view class="article-box">
     <articleItem
@@ -19,13 +18,15 @@
       :article="item"
     ></articleItem>
   </view>
+  </view>
+  
 </template>
 
 <script setup lang="ts">
 import articleItem from "@/components/articleItem.vue";
 import Api from "@/public/api";
 import { onLoad, onReachBottom, onPullDownRefresh } from "@dcloudio/uni-app";
-import { reactive, onMounted } from "vue";
+import { reactive, onMounted, ref } from "vue";
 import { ArticleList } from "@/model/articleList";
 import navbar from "@/components/navbar.vue";
 import searchBar from "@/components/searchBar.vue";
@@ -34,6 +35,15 @@ import ResponseCheck from "@/utils/responseCheck";
 
 let isSearching = false;
 let isViewing = uni.getStorageSync("isViewing");
+let body = ref("fuck")
+
+const toggleStyle = (open: any) => {
+  if (open) {
+    body.value = "doNotFuck"
+  } else {
+    body.value = "fuck"
+  }
+}
 
 const navToArticlePublishPage = () => {
   uni.navigateTo({
@@ -120,6 +130,21 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
+.doNotFuck {
+  position: fixed;
+}
+
+.search-bar {
+  margin: 0 auto;
+  padding: 10upx;
+  background: linear-gradient(
+    to bottom right,
+    rgba(#b39cd0, 0.5),
+    rgba(#00c9a7, 0.3),
+    rgba(#c4fcef, 0.5)
+  );
+}
+
 .article-box {
   width: 95%;
   margin: 0 auto;
