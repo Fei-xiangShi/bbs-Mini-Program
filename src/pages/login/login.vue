@@ -53,6 +53,7 @@
       </view>
     </view>
     <u-popup
+      customStyle="overflow-y: scroll"
       position="bottom"
       :show="isShowingUserAgreement"
       @close="showUserAgreement"
@@ -170,10 +171,6 @@ onLoad(() => {
   cursor: pointer;
 }
 
-.login-passage {
-  text-indent: 2rem;
-}
-
 .blackDrawer {
   pointer-events: none; /* 允许与位于其下方的内容进行交互 */
   z-index: 1; /* 将遮罩层放置在内容上方 */
@@ -268,5 +265,6 @@ button {
   margin-left: 20%;
   margin-right: 20%;
   font-weight: 70;
+  text-indent: 2rem;
 }
 </style>

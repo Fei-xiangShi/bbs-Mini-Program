@@ -1,4 +1,5 @@
 <template>
+  <navbar />
   <view>123</view>
   <view class="navToAriticlePublishPage" @tap="navToArticlePublishPage"
     ><u-text>+</u-text></view
@@ -9,7 +10,7 @@
       class="header-search-bar"
       @search="searchPassage"
     />
-    <navbar />
+    
   </view>
   <view class="article-box">
     <articleItem
