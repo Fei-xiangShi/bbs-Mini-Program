@@ -38,7 +38,12 @@
     </view>
   </view>
 
-  <view @tap="toggleSidebar" class="drawer" v-if="showSidebar" @touchmove.stop.prevent="true"></view>
+  <view
+    @tap="toggleSidebar"
+    class="drawer"
+    v-if="showSidebar"
+    @touchmove.stop.prevent="true"
+  ></view>
 </template>
 
 <script setup lang="ts">

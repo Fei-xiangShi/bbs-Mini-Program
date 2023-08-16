@@ -1,7 +1,6 @@
 <template>
-  <navbar :isViewing="isViewing" class="navbar" @openSidebar="toggleStyle"/>
-  <view :class="body">
-    <view class="navToAriticlePublishPage" @tap="navToArticlePublishPage"
+  <navbar :isViewing="isViewing" class="navbar" @openSidebar="toggleStyle" />
+  <view class="navToAriticlePublishPage" @tap="navToArticlePublishPage"
     ><u-text>+</u-text></view
   >
   <view class="search-bar">
@@ -11,15 +10,15 @@
       @search="searchPassage"
     />
   </view>
-  <view class="article-box">
-    <articleItem
-      v-for="item in artList.list"
-      :key="item.id"
-      :article="item"
-    ></articleItem>
+  <view :class="body">
+    <view class="article-box">
+      <articleItem
+        v-for="item in artList.list"
+        :key="item.id"
+        :article="item"
+      ></articleItem>
+    </view>
   </view>
-  </view>
-  
 </template>
 
 <script setup lang="ts">
@@ -35,15 +34,15 @@ import ResponseCheck from "@/utils/responseCheck";
 
 let isSearching = false;
 let isViewing = uni.getStorageSync("isViewing");
-let body = ref("fuck")
+let body = ref("fuck");
 
 const toggleStyle = (open: any) => {
   if (open) {
-    body.value = "doNotFuck"
+    body.value = "doNotFuck";
   } else {
-    body.value = "fuck"
+    body.value = "fuck";
   }
-}
+};
 
 const navToArticlePublishPage = () => {
   uni.navigateTo({

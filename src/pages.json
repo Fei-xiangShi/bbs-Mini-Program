@@ -29,7 +29,6 @@
     {
       "path": "pages/bbs/bbs",
       "style": {
-        "enablePullDownRefresh": true,
         "navigationStyle": "custom"
       }
     },
@@ -51,7 +50,7 @@
   ],
   "globalStyle": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "forest",
+    "navigationBarTitleText": "西南大学樟树林: 新一代智能平台",
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8"
   },

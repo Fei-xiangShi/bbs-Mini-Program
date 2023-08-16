@@ -29,11 +29,7 @@ const setUser = () => {
 
 const setMenu = () => {
   Api.getMenu().then((res: any) => {
-    let niubi = [{ id: 0, name: "热门", parentCategory: null }, { id: 0, name: "热门", parentCategory: null }]
-    let haha = [...niubi, ...niubi, ...niubi]
-    let test = [...haha, ...haha, ...haha]
-    let many = [...test, ...test, ...test]
-    res.data = [...many, ...res.data]
+    res.data = [{ id: 0, name: "热门", parentCategory: null }, ...res.data]
     uni.setStorageSync("menu", res.data || []);
   });
   uni.setStorageSync("isViewing", 0);
